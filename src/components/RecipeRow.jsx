@@ -1,20 +1,18 @@
 import "../App.css";
 
-export default function RecipeRow({ image, name }) {
+export default function RecipeRow({ image, name, calories, protein }) {
   return (
-      <tr>
-        <td>
-          <img
-            className="recipeImage"
-            src={image}
-          />
-        </td>
-        <td>
-          <p>{name}</p>
-        </td>
-        <td>
-            Hi
-        </td>
-      </tr>
+    <tr>
+      <td>
+        <div style={{height: "10em", width: "10em"}}>
+          <img className="recipeImage" src={image} />
+        </div>
+      </td>
+      <td>
+        <p>{name}</p>
+      </td>
+      <td>{calories} kcal</td>
+      <td>{protein}g</td>
+    </tr>
   );
 }

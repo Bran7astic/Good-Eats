@@ -7,6 +7,9 @@
 
 .recipeImage {
   border-radius: 20px;
+  object-fit: cover;
+  object-position: center;
+  height: 10em;
 }
 
 .recipeCard {
@@ -17,4 +20,17 @@
 .dataTable {
   width: 100%;
   border: 1px solid gray
+}
+
+.searchBar {
+  text-align: center;
+  border-radius: 10px;
+  border-color: gray;
+  height: 2em;
+  max-width: 100%;
+}
+
+table {
+  padding: 20px;
+  border-radius: 20px;
 }

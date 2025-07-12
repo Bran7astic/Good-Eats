@@ -9,10 +9,14 @@ export default function RecipeContainer({ token }) {
 
   // Makes API call when user searches once again
   useEffect(() => {
+    if (debounceValue.trim() === "") {
+      return;
+    }
+
     const getRecipes = async () => {
       try {
         const results = await fetch(
-          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${token}&query=${debounceValue}&number=10`
+          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${token}&query=${debounceValue}&number=20&addRecipeNutrition=true`
         );
         if (!results.ok) {
           throw new Error("HTTP Error. Status:", results.status);
@@ -29,13 +33,11 @@ export default function RecipeContainer({ token }) {
     getRecipes();
   }, [token, debounceValue]);
 
-
   // Tracks how searchInput and debounceValue change
-  useEffect(() => {
-    console.log("Search Input:", searchInput);
-    console.log("Debounce value:", debounceValue);
-  }, [searchInput, debounceValue]);
-
+  // useEffect(() => {
+  //   console.log("Search Input:", searchInput);
+  //   console.log("Debounce value:", debounceValue);
+  // }, [searchInput, debounceValue]);
 
   // Debounce timer that delays when API call is made
   useEffect(() => {
@@ -48,31 +50,40 @@ export default function RecipeContainer({ token }) {
     };
   }, [searchInput]);
 
-
-
   return (
     <div>
       <input
+        className="searchBar"
         placeholder="Search"
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
       />
 
-      <table className="dataTable">
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Calories</th>
-          </tr>
-        </thead>
+      {debounceValue.trim() === "" ? (
+        <h3>Search for a recipe!</h3>
+      ) : (
+        <table className="dataTable">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Calories</th>
+              <th>Protein</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          {dataList.map((item) => (
-            <RecipeRow image={item.image} name={item.title} />
-          ))}
-        </tbody>
-      </table>
+          <tbody>
+            {dataList.map((item) => (
+              <RecipeRow
+                image={item.image}
+                name={item.title}
+                calories={item.nutrition.nutrients[0].amount}
+                protein={item.nutrition.nutrients[10].amount}
+              />
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
