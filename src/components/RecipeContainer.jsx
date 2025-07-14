@@ -48,20 +48,22 @@ export default function RecipeContainer({ token, dataSetters }) {
       dataSetters.setProtein(0);
     }
 
-    const getAverage = (idx) => {
-      const sum = dataList.reduce((total, nextItem) => {
+    const getAverage = (data, idx) => {
+      const sum = data.reduce((total, nextItem) => {
         return total + nextItem.nutrition.nutrients[idx].amount;
       }, 0);
 
-      return dataList.length > 0 ? (sum / dataList.length).toFixed(2) : 0;
+      return data.length > 0 ? (sum / data.length).toFixed(2) : 0;
     };
 
     const caloriesIdx = 0;
     const proteinIdx = 10;
 
-    dataSetters.setTotal(filterByCal(dataList).length);
-    dataSetters.setCalories(getAverage(caloriesIdx));
-    dataSetters.setProtein(getAverage(proteinIdx));
+    const filteredList = filterByCal(dataList)
+
+    dataSetters.setTotal(filteredList.length);
+    dataSetters.setCalories(getAverage(filteredList, caloriesIdx));
+    dataSetters.setProtein(getAverage(filteredList, proteinIdx));
   }, [dataList, dataSetters, filterByCal]);
 
   useEffect(() => {
