@@ -10,14 +10,14 @@ Time spent: **X** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] **The site has a dashboard displaying a list of data fetched using an API call**
+- [x] **The site has a dashboard displaying a list of data fetched using an API call**
   - The dashboard should display at least 10 unique items, one per row
   - The dashboard includes at least two features in each row
-- [ ] **`useEffect` React hook and `async`/`await` are used**
+- [x] **`useEffect` React hook and `async`/`await` are used**
 - [ ] **The app dashboard includes at least three summary statistics about the data** 
   - The app dashboard includes at least three summary statistics about the data, such as:
     - *insert details here*
-- [ ] **A search bar allows the user to search for an item in the fetched data**
+- [x] **A search bar allows the user to search for an item in the fetched data**
   - The search bar **correctly** filters items in the list, only displaying items matching the search query
   - The list of results dynamically updates as the user types into the search bar
 - [ ] **An additional filter allows the user to restrict displayed items by specified categories**

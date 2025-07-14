@@ -2,12 +2,20 @@ import { useEffect, useState } from "react";
 import RecipeCard from "./RecipeRow";
 import RecipeRow from "./RecipeRow";
 
-export default function RecipeContainer({ token }) {
+export default function RecipeContainer({ token, dataSetters }) {
   const [searchInput, setSearchInput] = useState("");
   const [debounceValue, setDebounceValue] = useState("");
   const [dataList, setDataList] = useState([]);
+  const [filterVal, setFilterVal] = useState(1500);
 
   // Makes API call when user searches once again
+
+  const filterByCal = (data) => {
+    return data.filter(
+      (item) => item.nutrition.nutrients[0].amount < filterVal
+    );
+  };
+
   useEffect(() => {
     if (debounceValue.trim() === "") {
       return;
@@ -33,13 +41,29 @@ export default function RecipeContainer({ token }) {
     getRecipes();
   }, [token, debounceValue]);
 
-  // Tracks how searchInput and debounceValue change
-  // useEffect(() => {
-  //   console.log("Search Input:", searchInput);
-  //   console.log("Debounce value:", debounceValue);
-  // }, [searchInput, debounceValue]);
+  useEffect(() => {
+    if (dataList.length === 0) {
+      dataSetters.setTotal(0);
+      dataSetters.setCalories(0);
+      dataSetters.setProtein(0);
+    }
 
-  // Debounce timer that delays when API call is made
+    const getAverage = (idx) => {
+      const sum = dataList.reduce((total, nextItem) => {
+        return total + nextItem.nutrition.nutrients[idx].amount;
+      }, 0);
+
+      return dataList.length > 0 ? (sum / dataList.length).toFixed(2) : 0;
+    };
+
+    const caloriesIdx = 0;
+    const proteinIdx = 10;
+
+    dataSetters.setTotal(filterByCal(dataList).length);
+    dataSetters.setCalories(getAverage(caloriesIdx));
+    dataSetters.setProtein(getAverage(proteinIdx));
+  }, [dataList, dataSetters, filterByCal]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebounceValue(searchInput);
@@ -50,14 +74,33 @@ export default function RecipeContainer({ token }) {
     };
   }, [searchInput]);
 
+  // useEffect(() => {
+  //   setDataList(dataList.filter(
+  //     item => item.nutrition.nutrients[0].amount < filterVal
+  //   ))
+  // }, [filterVal, dataList])
+
   return (
     <div>
-      <input
-        className="searchBar"
-        placeholder="Search"
-        value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
-      />
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <input
+          className="searchBar"
+          placeholder="Search"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+
+        <input
+          type="range"
+          min={1}
+          max={1500}
+          value={filterVal}
+          onChange={(e) => setFilterVal(e.target.value)}
+          step={1}
+          id="calorieRange"
+        />
+        <label for="calorieRange">Max Calories: {filterVal}</label>
+      </div>
 
       {debounceValue.trim() === "" ? (
         <h3>Search for a recipe!</h3>
@@ -73,7 +116,7 @@ export default function RecipeContainer({ token }) {
           </thead>
 
           <tbody>
-            {dataList.map((item) => (
+            {filterByCal(dataList).map((item) => (
               <RecipeRow
                 image={item.image}
                 name={item.title}
