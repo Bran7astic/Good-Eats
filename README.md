@@ -1,4 +1,4 @@
-# Web Development Project 5 - *Name of App Here*
+# Web Development Project 5 - *Good Eats*
 
 Submitted by: **Brandon Budhan**
 
