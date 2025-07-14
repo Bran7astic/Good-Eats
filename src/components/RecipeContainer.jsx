@@ -18,6 +18,7 @@ export default function RecipeContainer({ token, dataSetters }) {
 
   useEffect(() => {
     if (debounceValue.trim() === "") {
+      setDataList([])
       return;
     }
 
@@ -53,7 +54,7 @@ export default function RecipeContainer({ token, dataSetters }) {
         return total + nextItem.nutrition.nutrients[idx].amount;
       }, 0);
 
-      return data.length > 0 ? (sum / data.length).toFixed(2) : 0;
+      return data.length > 0 ? (sum / data.length).toFixed(0) : 0;
     };
 
     const caloriesIdx = 0;
@@ -102,6 +103,7 @@ export default function RecipeContainer({ token, dataSetters }) {
           id="calorieRange"
         />
         <label for="calorieRange">Max Calories: {filterVal}</label>
+        <br></br>
       </div>
 
       {debounceValue.trim() === "" ? (

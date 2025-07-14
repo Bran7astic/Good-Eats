@@ -9,7 +9,7 @@
   border-radius: 20px;
   object-fit: contain;
   object-position: center;
-  height: 10em;
+  max-width: 100%;
 }
 
 .recipeCard {
@@ -22,14 +22,12 @@
   border: 1px solid gray
 }
 
-td {
-  padding: 10px;
-}
-
 .searchBar {
   text-align: center;
-  border-radius: 10px;
-  border-color: gray;
+  border-radius: 50px;
+  border-color: rgb(157, 157, 255);
+  background-color: rgb(246, 246, 255);
+  color: rgb(112, 112, 185);
   height: 2em;
   max-width: 100%;
   margin: 20px;
@@ -38,6 +36,10 @@ td {
 table {
   padding: 20px;
   border-radius: 20px;
+}
+
+td {
+  padding: 10px;
 }
 
 .statCard {
@@ -56,4 +58,21 @@ table {
   gap: 10px;
   align-items: center;
   justify-content: center;
+}
+
+#calorieRange {
+  -webkit-appearance: none;
+  height: 10px;
+  background-color: rgb(232, 237, 247);
+  border-radius: 10px;
+}
+
+#calorieRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(157, 157, 255);
+  cursor: pointer;
 }
