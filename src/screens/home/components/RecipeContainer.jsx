@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import RecipeCard from "./RecipeRow";
 import RecipeRow from "./RecipeRow";
+import { AttentionSeeker, Fade } from "react-awesome-reveal";
+import Chart from "./Chart";
 
 export default function RecipeContainer({ token, dataSetters }) {
   const [searchInput, setSearchInput] = useState("");
@@ -18,7 +20,7 @@ export default function RecipeContainer({ token, dataSetters }) {
 
   useEffect(() => {
     if (debounceValue.trim() === "") {
-      setDataList([])
+      setDataList([]);
       return;
     }
 
@@ -60,7 +62,7 @@ export default function RecipeContainer({ token, dataSetters }) {
     const caloriesIdx = 0;
     const proteinIdx = 10;
 
-    const filteredList = filterByCal(dataList)
+    const filteredList = filterByCal(dataList);
 
     dataSetters.setTotal(filteredList.length);
     dataSetters.setCalories(getAverage(filteredList, caloriesIdx));
@@ -86,12 +88,21 @@ export default function RecipeContainer({ token, dataSetters }) {
   return (
     <div>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <input
-          className="searchBar"
-          placeholder="Search"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
+        <AttentionSeeker
+          effect="pulse"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <input
+            className="searchBar"
+            placeholder="Search"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+        </AttentionSeeker>
 
         <input
           type="range"
@@ -104,6 +115,9 @@ export default function RecipeContainer({ token, dataSetters }) {
         />
         <label for="calorieRange">Max Calories: {filterVal}</label>
         <br></br>
+        <div>
+          <Chart data={dataList}/>
+        </div>
       </div>
 
       {debounceValue.trim() === "" ? (
@@ -122,6 +136,7 @@ export default function RecipeContainer({ token, dataSetters }) {
           <tbody>
             {filterByCal(dataList).map((item) => (
               <RecipeRow
+                key = {item}
                 image={item.image}
                 name={item.title}
                 calories={item.nutrition.nutrients[0].amount}

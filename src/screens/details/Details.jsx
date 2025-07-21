@@ -36,13 +36,15 @@ export default function Details() {
         <div style={{display: "flex", flexDirection: "column", alignItems:"center"}}>
           <h1 style={{ marginBottom: "0em" }}>{details.title}</h1>
           <div
-            style={{ display: "flex", justifyContent: "center", gap: "2em" }}
+            style={{ display: "flex", justifyContent: "center", gap: "2em", marginBottom:"2em"}}
           >
-            {details.cuisines.map((item) => (
+            {details.cuisines?.map((item) => (
               <h4>{item}</h4>
             ))}
           </div>
+
           <img className="recipeImage" src={details.image} />
+          
           <h2>Steps</h2>
           <div
             style={{
