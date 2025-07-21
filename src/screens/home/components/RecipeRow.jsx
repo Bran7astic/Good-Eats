@@ -1,10 +1,12 @@
-import "../App.css";
+import "@/App.css";
+import { Link } from "react-router-dom";
 
-export default function RecipeRow({ image, name, calories, protein }) {
+export default function RecipeRow({ image, name, calories, protein, id }) {
+
   return (
     <tr>
       <td>
-        <div style={{ height: "10em", width: "10em", alignContent: "center"}}>
+        <div style={{ height: "10em", width: "10em", alignContent: "center" }}>
           <img className="recipeImage" src={image} />
         </div>
       </td>
@@ -17,7 +19,9 @@ export default function RecipeRow({ image, name, calories, protein }) {
             alignContent: "center",
           }}
         >
-          <p>{name}</p>
+          <Link to={`/details/${id}`}>
+            <p>{name}</p>
+          </Link>
         </div>
       </td>
       <td>{calories} kcal</td>

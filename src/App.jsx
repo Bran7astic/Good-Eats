@@ -1,8 +1,8 @@
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
-import Header from './components/Header'
-import RecipeContainer from './components/RecipeContainer'
-import Stats from './components/Stats'
+import Header from './screens/home/components/Header'
+import Stats from './screens/home/components/Stats'
+import RecipeContainer from './screens/home/components/RecipeContainer'
 
 const token = import.meta.env.VITE_API_KEY 
 
