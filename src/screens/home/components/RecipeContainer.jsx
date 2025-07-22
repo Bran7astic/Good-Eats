@@ -116,7 +116,7 @@ export default function RecipeContainer({ token, dataSetters }) {
         <label for="calorieRange">Max Calories: {filterVal}</label>
         <br></br>
         <div>
-          <Chart data={dataList}/>
+          <Chart data={filterByCal(dataList)}/>
         </div>
       </div>
 

@@ -1,10 +1,10 @@
-# Web Development Project 6 - *Name of App Here*
+# Web Development Project 6 - *Good Eats*
 
-Submitted by: **Your Name Here**
+Submitted by: **Brandon Budhan**
 
-This web app: **insert description**
+This web app: **Your super-simple tool to eat the way you want!**
 
-Time spent: **X** hours spent in total
+Time spent: **8** hours spent in total
 
 ## Required Features
 
@@ -17,7 +17,7 @@ The following **required** functionality is completed:
   - *To ensure an accurate grade, your sidebar **must** be viewable when showing the details view in your recording.*
 - [x] **Each detail view of an item has a direct, unique URL link to that item’s detail view page**
   -  *To ensure an accurate grade, the URL/address bar of your web browser **must** be viewable in your recording.*
-- [ ] **The app includes at least two unique charts developed using the fetched data that tell an interesting story**
+- [x] **The app includes at least two unique charts developed using the fetched data that tell an interesting story**
   - At least two charts should be incorporated into the dashboard view of the site
   - Each chart should describe a different aspect of the dataset
 
@@ -38,7 +38,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='/public/preview2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  
@@ -47,13 +47,9 @@ GIF created with ...
 [ScreenToGif](https://www.screentogif.com/) for Windows
 [peek](https://github.com/phw/peek) for Linux. -->
 
-## Notes
-
-Describe any challenges encountered while building the app.
-
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2025] [Brandon Budhan]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
